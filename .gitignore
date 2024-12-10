@@ -1,1 +1,5 @@
-.quarto/_freeze/FiguresSE/execute-results/html.json
+.quarto/
+_manuscript/
+.Rproj.user/
+_freeze/
+site_libs/

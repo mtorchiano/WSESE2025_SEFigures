@@ -52,6 +52,8 @@ keywords: visualization, software engineering
 library(tidyverse)
 library(readxl)
 library(GGally)
+library(tibble)
+
 output_format = rmarkdown::metadata$format
 if(is.null(output_format)) output_format = "none"
 if(is.list(output_format)) output_format = names(output_format)
@@ -162,7 +164,6 @@ The general goal of the study can be formulated using the GQM template [@GQM1999
 #| label: tbl-GQM
 #| tbl-cap: GQM definition
 
-library(tibble)
 gqm<-
   tibble( item = c("Analyze","For the purpose of", "With respect to", "From the viewpoint of", "In the context of"),
          value = c("the usage of figures articles","understanding","the type, technique, and mistakes","paper authors and reviewers","SE conferences and journals" ))
@@ -307,31 +308,6 @@ dg <- papers |>
 
 VenueOrdered = c("ESEM","ICSE","EMSE","TSE")
 dg <- dg|> mutate(Venue = factor(Venue,levels=VenueOrdered))
-
-
-if(FALSE){
-# Checks
-dg|> filter(is.na(VenueType))
-
-dg %>% group_by(Venue,Year) %>%
-  summarize(Articles = length(unique(DOI)), Figures=n(), .groups="drop") %>%
-  add_row(.,Venue="Total",Articles=sum(.$Articles),Figures=sum(.$Figures)) %>%
-  knitr::kable()
-
-files = read_csv("all_files.csv")
-dg |> filter(str_detect(Type,"\\?")) |> select(Venue,Year,DOI,Type) |>
-  left_join(files |> select(DOI,file),by="DOI") |> mutate(file = str_sub(file,end=80))
-
-dg |> select(main_type,Type) |> 
-  mutate(Type = str_to_lower(Type)) |> 
-  arrange(main_type,Type) |> 
-  group_by(main_type,Type) |> summarize(n=n()) |>
-  distinct() |> 
-  unfill("main_type")
-
-dg |> full_join(papers, by = join_by(DOI)) |> filter(is.na(Venue.x)) |> count(Venue.y,Year.y) |> filter(Venue.y=="ICSE")
-dg |> full_join(papers, by = join_by(DOI)) |> filter(is.na(Venue.x)) |> filter(Venue.y=="ICSE")
-}
 ```
 
 Overall in our study we analyzed a total of 865 articles that included 6342 figures.
@@ -419,18 +395,6 @@ dg.density|> arrange(Venue) |>
   kableExtra::kbl(booktabs = T,
                   #col.names = c("Venue","Mean F","Med F","Mean P","Med P","Mean D","Med D","w/o Fig","%"))
                   col.names = c("Venue","Mean F","Mean P","Mean D","w/o Fig","%"))
-
-if(FALSE){
-  dg %>% 
-  group_by(Venue,DOI) %>% 
-  summarize(num_fig=sum(Fig!=0),fig_per_page=num_fig/pages,.groups="drop") |>
-  summarize( WithoutFigure=sum(num_fig==0), 
-             WithoutFigurePct=paste0(round(WithoutFigure/n()*100,1),"%"), 
-             MeanFigurePP=round(mean(fig_per_page),1), 
-             SDFigurePP=round(sd(fig_per_page),1),
-             Q1 = quantile(fig_per_page,0.25),
-             Q3 = quantile(fig_per_page,0.75))
-}
 
 ```
 
@@ -863,14 +827,6 @@ The errors types are reported divided by severity levels.
 #| fig-cap: "Overall frequency of error committed in quantitative figures"
 #| fig.width: 6
 #| fig.height: 8
-
-if(FALSE){
-dg %>% filter(quantitative) %>% 
-  pivot_longer(cols=all_of(errors$Error),names_to = "Error") %>% 
-  group_by(Error) %>% 
-  summarize( n = sum(value), .groups = "drop") |>
-  full_join(errors |> select(Error,Severity),by="Error") |> arrange(Severity,n)
-}
 
 num_qfigures <- nrow( dg %>% filter(!Missing,quantitative=="Q") )
 dg %>% filter(!Missing,quantitative=="Q") %>% 
