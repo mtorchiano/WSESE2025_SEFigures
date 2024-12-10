@@ -1,0 +1,27 @@
+project:
+  type: manuscript
+
+manuscript:
+  article: FiguresSE.qmd
+
+formats:
+  #ieee-html: default
+  ieee-pdf: default
+
+notebook-links: false
+
+# format:\
+#   html:
+#     comments:
+#       hypothesis: true
+#   docx: default
+#   jats: default
+
+  # (other formats)
+  # pdf: default
+
+execute:
+  freeze: true
+
+
+

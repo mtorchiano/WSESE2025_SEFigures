@@ -1,0 +1,25 @@
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+% Do not put math or special symbols in the title.
+$if(title)$
+\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+$endif$
+
+\author{
+$if(funding)$
+\thanks{$for(funding)$$for(funding.statement)$$funding.statement$$endfor$$endfor$}
+$endif$
+$if(author)$
+$if(author/allbutlast)$
+$for(by-author/allbutlast)$
+$author.tex()$
+\and
+$endfor$
+${ by-author/last:author.tex() }
+$else$
+$for(by-author)$
+  $author.tex()$
+$endfor$
+$endif$
+$endif$
+}

@@ -1,0 +1,12 @@
+\IEEEauthorblockN{$it.name.literal$}
+\IEEEauthorblockA{%
+$if(it.affiliations)$
+  $if(it.affiliations/first)$
+    $for(it.affiliations/first)$
+      $affiliation.tex()$
+    $endfor$
+  $endif$
+$endif$\\
+$if(it.email)$$it.email$$endif$
+$if(it.orcid)$\orcidlink{$it.orcid$}$endif$$if(it.metadata.membership)$,~\IEEEmembership{$it.metadata.membership$}$endif$
+}
