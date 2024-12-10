@@ -97,9 +97,10 @@ The main contributions consist in:
 - Overview of the State of the Practice: We provide a comprehensive analysis of the current visualization practices within prominent SE venues, identifying prevailing trends and common practices.
 - Purpose of Figures: An examination of the various roles that figures play in SE papers, shedding light on how they contribute to the overall narrative and understanding of the research.
 - Catalogue of Common Diagrams: A detailed catalog of the most frequently used diagrams, offering insights into their typical applications and variations.
-- Recommendations: Based on our analysis, we propose a set of recommendations aimed at helping authors avoid common pitfalls and enhance the effectiveness of their visualizations.
 
-Overall by surveying the current practices and offering practical guidance, this paper seeks to elevate the standard of visual communication in software engineering research, ultimately contributing to the clarity and impact of published work.
+In particular we will focus on quantitative visualization, i.e. charts and diagrams that encode quantitative measures. This is opposed to non-quantitative visualization that represent conceptual aspects in a more or less formal way, e.g., software representations such as UML diagrams.
+
+Overall by surveying the current practices and identifying most common errors, this paper seeks to elevate the standard of visual communication in software engineering research, ultimately contributing to the clarity and impact of published work.
 
 
 # Background
@@ -951,6 +952,7 @@ The most common quantitative graph types are bar plots, boxplots, and line plots
 
 Most errors are relatively easy to address and we advocate for a wider diffusion of visual literacy in the SE research community.
 
-As future work we would like to extend the survey to a wider time span as well as other venues. In addition we should take into consideration figures with multiple types. Eventually, a pragmatic guide to assess and improve quantitive diagrams could be defined based on this work.
+As future work we would like to extend the survey to a wider time span as well as other venues. In addition we should take into consideration figures with multiple types. Eventually, a pragmatic guide to assess and improve quantitative diagrams and help researchers avoid the most common pitfalls, could be defined based on this work.
+
 
 # References
