@@ -1,5 +1,6 @@
 ---
-title: "Data Visualization in SE - an Exploration"
+#title: "Data Visualization in SE - an Exploration"
+title: On the Use of Figures in SE Academic Papers
 author:
   - name: Marco Torchiano
     affiliations:
@@ -264,14 +265,14 @@ Then it was updated when, during the analysis of the articles, a diagram that wa
 ## Procedure
 
 We selected a set of recent issues of two leading SE Journals -- IEEE Transactions on Software Engineering (TSE) and Empirical Software Engineering Journal (EMSE) -- and SE conferences -- ACM/IEEE International Symposium on Empirical Software Engineering and Measurement (ESEM) and ACM/IEEE International Conference on Software Engineering (ICSE) --.
-We downloaded all the articles in 2022 issues of the two journals, those appearing in the year 2017, 2019, 2021, and 2022 of ESEM and a sample of those appearing in years 2018, 2019, 2021, and 2022 of ICSE. 
+We downloaded all the articles in 2022 issues of the two journals, those appearing in the year 2017, 2019, 2021, and 2022 of ESEM and a sample of those appearing in years 2018, 2019, 2021, and 2022 of ICSE[^1].
 For each article we went though it and for each figure we classified it using the taxonomy presented in @tbl-types above.
 In addition, for the quantitative figures, we applied the error taxonomy described in @sec-error-taxonomy to identify errors present in the figure.
 
 The person performing the analysis started with a limited number of articles then they discussed all the collected data with the leading researcher to define the correct application of the taxonomy.
 After the processing of a whole venue a second round of discussion focused on the dubious cases that emerged during the analysis.
 
-
+[^1]: Due to the large number of articles in ICSE, only a sample of the total article was analyzed except for year 2019.
 
 # Results
 
@@ -388,13 +389,17 @@ dg.density|> arrange(Venue) |>
              MeanPages = round(mean(pages),1),
              #MedianPages = round(median(pages),1),
              MeanDensity=round(mean(fig_per_page),2),
-             #MedianDensity=round(median(fig_per_page),2),
+             MedianDensity=round(median(fig_per_page),2),
              WithoutFigure=sum(num_fig==0), 
              Pct=paste0(round(WithoutFigure/n()*100,1),"%")
              ) |>
+  mutate(WithoutFigure=paste0(WithoutFigure," (",Pct,")")) |>
+  select(-Pct) |>
   kableExtra::kbl(booktabs = T,
                   #col.names = c("Venue","Mean F","Med F","Mean P","Med P","Mean D","Med D","w/o Fig","%"))
-                  col.names = c("Venue","Mean F","Mean P","Mean D","w/o Fig","%"))
+                  #col.names = c("Venue","Mean F","Mean P","Mean D","w/o Fig","%"))
+                  col.names = c("Venue","Figures","Pages","Mean F/P","Median F/P","w/o Fig"),
+                  align="lrrrr")
 
 ```
 
@@ -718,7 +723,7 @@ dg %>% filter(!Missing,quantitative=="Q") |>
       as.character()
 ```
 
-We observe the average number of errors per figure is 1.6. Overall half of the figures exhibit at least one error, with half the EMSE articles showing at least 2 errors. Concerning the proportion of figures where no error was detected, they are `r NoErrorSummary`.
+We observe the average number of errors per figure is 1.6 (median 1). Overall half of the figures exhibit at least one error, with half the EMSE articles showing at least 2 errors. Concerning the proportion of figures where no error was detected, they are `r NoErrorSummary`.
 
 
 ```{r}
@@ -811,7 +816,7 @@ ungroup() |>
 select(Venue,Severity,prop) |>
 mutate(prop = (prop*100) |> formatC(format="f",digits=1) |> paste0("%") ) |>
 pivot_wider(names_from="Severity",values_from="prop") |>
-kableExtra::kbl(booktabs = T)
+kableExtra::kbl(booktabs = T, position="tb")
 ```
 
 Overall we observe that one every four pictures contains at least a critical error, with similar condition across the four venues. 
@@ -905,7 +910,7 @@ The most common type is bar plot, used in one out of three figures, followed by 
 :::
 
 
-Talking about errors, we found 1.6 errors per figure on average. Anyway, across all venues, one in three figures showed no errors according to our taxonomy, while considering only critical errors, three out of four figures are fine. Focusing on major and minor errors, we observed that half of the figures showed at least one.
+Talking about errors, we found 1.6 errors per figure on average (median 1). Anyway, across all venues, one in three figures showed no errors according to our taxonomy, while considering only critical errors, three out of four figures are fine. Focusing on major and minor errors, we observed that half of the figures showed at least one.
 
 The use of colours too similar to each other is the most common critical error, this is often due to little care spent in selecting an appropriate palette.
 The lack of values on the axes is another relatively common error that has a heavy impact on the ability to understand the diagram.
@@ -933,9 +938,8 @@ Common minor errors include a less than ideal use of legends.
 
 The study presented in this paper is exploratory and therefore presents several limitations; we highlight the main ones. 
 
-Only a few selected SE publication venues have been
-considered. Although the venues have a very good reputation, they do not represent the whole publication spectrum in SE. Moreover the articles have been drawn from a limited time span, they represent a sample. This might affect the external validity of the study.
-The graph error taxonomy has been built based on the literature in the area of data visualization, but it could have omitted important errors or, vice-versa, considered error that are not such in the view of other researchers. In addition the severity level has been assigned to each error on the basis of the author expert judgment.
+Only a few selected SE publication venues have been considered. Although the venues have a very good reputation, they do not represent the whole publication spectrum in SE. Moreover the articles have been drawn from a limited time span, they represent a sample. This might affect the external validity of the study.
+The graph error taxonomy has been built based on the literature in the area of data visualization, although it has not been empirically validates. It could have omitted important errors or, vice-versa, considered error that are not such in the view of other researchers. In addition the severity level has been assigned to each error on the basis of the author expert judgment.
 In the classification of the type of quantitative diagrams we considered only the main type, although there are several cases of diagram that mix multiple types, e.g. bars + lines, that were not considered.
 
 

@@ -3,3 +3,5 @@ _manuscript/
 .Rproj.user/
 _freeze/
 site_libs/
+
+/.quarto/
