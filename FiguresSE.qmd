@@ -88,7 +88,7 @@ pvalue_fmt <- function(.d, column, digits=3){
 
 In software engineering (SE) research, the effective communication of ideas, methodologies, and results is paramount. Papers in this field often employ a variety of visual aids, including figures, tables, and code fragments, to complement the textual content and enhance clarity. While there exist a large research community that explores innovative visualization techniques, the majority of visualizations in SE papers remain relatively mundane, relying on basic, well-established methods. This reliance on standard visual aids reflects both the practical constraints and the entrenched practices within the field.
 
-As a practitioner who regularly writes papers and supervises younger researchers, I often find myself providing guidance on the effective use of visualizations. This necessity arises from observing a recurring issue: poorly designed diagrams that fail to effectively convey the intended information. Additionally, as a reviewer, I frequently encounter diagrams that are not only visually unappealing but also ineffective in communicating complex ideas. These experiences underscore a broader concern within the community regarding the presentation quality of SE papers. A critical question emerges: is it worthwhile to invest substantial effort in designing more sophisticated and effective diagrams? This paper aims to address this question by examining the current state of visualization practices in SE research.
+Practitioners who regularly writes papers and supervises younger researchers, can often find themselves providing guidance on the effective use of visualizations. This necessity arises from observing a recurring issue: poorly designed diagrams that fail to effectively convey the intended information. Additionally, as reviewers, we frequently encounter diagrams that are not only visually unappealing but also ineffective in communicating complex ideas. These experiences underscore a broader concern within the community regarding the presentation quality of SE papers. A critical question emerges: is it worthwhile to invest substantial effort in designing more sophisticated and effective diagrams? This paper aims to address this question by examining the current state of visualization practices in SE research.
 
 The goal of this paper is to advance the discourse on visualization in software engineering.
 The main contributions consist in:
@@ -196,17 +196,17 @@ In order to achieve the above goal we define the following research questions:
 
   Figures are used to convey many different types of information.
   The most general distinction is between quantitative and non quantitative information. 
-  In addition it is interesting to understand what figures are used to show.
+  A further step is to look into the different type of contents shown in the figures.
 
 
 - **RQ3**. Type: what types of diagrams are used to convey quantitative information?
 
-  Focusing on quantitative diagrams we wonder the type of diagrams used 
+  Focusing on quantitative diagrams we investigate the type of diagrams used 
   in the papers.
 
 - **RQ4**. Mistakes: What are the errors committed in quantitative diagrams?
 
-  We focus on all diagrams and the we analyze the specific mistakes
+  We focus on all diagrams and then we analyze the specific mistakes
   committed in the most used diagram types.
 
 For all the question above we aim to investigate whether a change can be observed for different venues and if time affected any aspect.
@@ -233,7 +233,7 @@ tibble(
 ```
 
 Concerning the figures, in addition to the main distinction between quantitative (Q) and non-quantitative (NonQ), we categorized the type of content.
-The list of types of figure contents are reported in table @tbl-types divided into quantitative and non quantitative.
+The list of types of figure contents are reported in @tbl-types divided into quantitative and non quantitative.
 
 ```{r}
 #| label: tbl-types
@@ -398,7 +398,7 @@ dg.density|> arrange(Venue) |>
 
 ```
 
-By looking at the figure we can observe a significant differences among the four venues. 
+By looking at the figure we can observe significant differences among the four venues. 
 Such visual assessment is confirmed by the result of an ANOVA analysis of figure density vs. Venue that are reported in @tbl-anova-density. 
 Considering as the reference level for the Venue variable the ESEM conference, by looking at the coefficient estimates we observe a significantly lower higher value for the ICSE conference and lower for EMSE journal, while the density of TSE is not different.
 
@@ -588,7 +588,7 @@ We observe that in the case of ESEM the distribution is very extreme with 22% of
 
 
 Focusing on the non quantitative figures only, @fig-nonq reports the numbers as well as the proportion of the five different non quantitative types defined in our taxonomy.
-Two out of three non quantitative figures fall into the broad _Schema_ category that includes all the diagrams use to explain something, including also software architecture or UML diagrams. Around one in five _NonQ_ figures are used to depict code, this is a widely used instead of using the _Listing_ environment. A smaller proportion (8.2%) is represented by screenshots. Eventually, we observed a few figures depicting graphs -- set of nodes and edges possibly labelled -- and just 59 figures reporting pictures or photographs.
+Two out of three non quantitative figures fall into the broad _Schema_ category that includes all the diagrams use to explain something, including also software architecture or UML diagrams. Around one in five _NonQ_ figures are used to depict code, this is common practice used instead of the _Listing_ environment. A smaller proportion (8.2%) is represented by screenshots. Eventually, we observed a few figures depicting graphs -- set of nodes and edges possibly labelled -- and just 59 figures reporting pictures or photographs.
 
 ```{r}
 #| label: fig-nonq
@@ -641,7 +641,7 @@ ggplot(aes(x=n,y=main_type)) +
   theme_minimal()+theme(panel.grid.major.y = element_blank())
 ```
 
-Overall one every three quantitative figures contains a bar plot The two other common used plot types are boxplots (19.6%) and line plots (18.7%).
+Overall one of every three quantitative figures contains a bar plot The two other common used plot types are boxplots (19.6%) and line plots (18.7%).
 Dot plots and scatter plots together make 8.8%, heatmaps account for 3.1% of quantitative figures, the remaining types overall account for 13% of quantitative diagram, any of them accounting for less than 3% individually.
 
 In the taxonomy we used for quantitative diagram types -- reported in @tbl-types --, we have different types of bar plots.
@@ -816,7 +816,7 @@ kableExtra::kbl(booktabs = T)
 
 Overall we observe that one every four pictures contains at least a critical error, with similar condition across the four venues. 
 Concerning the major errors, the journal TSE and the conference ESEM contain at least one error in one out of three figures, while the proportion of figures with at least one major error is 50% for ICSE and 60% for EMSE. 
-As far as minor errors are concerned, we observe a similar amount of defective figures for all venues except EMSE where the 60% of figures contain at least one error.
+As far as minor errors are concerned, we observe a similar amount of defective figures for all venues except EMSE where 60% of figures contain at least one error.
 
 Focusing down more, from the severity levels to the specific types of errors, 
 @fig-error-type reports the occurrence numbers and proportions of all the error types defined in the error taxonomy we defined in @sec-error-taxonomy.
@@ -853,7 +853,7 @@ As far as the major errors are concerned, we observe that the most common error 
 
 The most common major error is the use of rotated labels on the x axis (16.2%), next is the use of a legend instead of direct labelling (14.4%). The next error affects figures containing multiple diagrams and consists in using different scales on aligned diagrams (9.9%).
 
-The two most common minor errors regard the use of legends, often (20.1% of figures) the legend is placed inside the plot are affecting the clarity, moreover the legend is surrounded by a border (17.8%) that affects the ease of scanning back and forth between plot and legend itself.
+The two most common minor errors regard the use of legends, often (20% of figures) the legend is placed inside the plot, which reduces the clarity, also (17.8%) the legend is surrounded by a border that affects the ease of scanning back and forth between plot and legend itself.
 Another common error is the use of raster images (15.1%) that affects the overall visual quality of the diagram.
 
 
@@ -864,7 +864,7 @@ Based on the findings reported in the previous section we can answer the origina
 ## Answers to Research Questions
 
 As far as the mode of use of figures (RQ1) is concerned, we observed a relatively large adoption of figures with an average of 0.42 figures per page.
-As a comparison the present paper sports 12 figures in 8 pages, that is 1.5 figures per page, a clear outlier if we look at @fig-density.
+As a comparison the present paper contains 12 figures in 8 pages, that is 1.5 figures per page, a clear outlier if we look at @fig-density.
 Two venues are aligned with the average (ESEM and TSE) while the two other depart significantly: ICSE has higher density while EMSE has lower density.
 Concerning this latter difference, it can be explained by the larger number of pages of the articles published by EMSE. 
 
@@ -908,14 +908,14 @@ The most common type is bar plot, used in one out of three figures, followed by 
 Talking about errors, we found 1.6 errors per figure on average. Anyway, across all venues, one in three figures showed no errors according to our taxonomy, while considering only critical errors, three out of four figures are fine. Focusing on major and minor errors, we observed that half of the figures showed at least one.
 
 The use of colours too similar to each other is the most common critical error, this is often due to little care spent in selecting an appropriate palette.
-The lack of values on the axes is another relatively common error that has an heavy impact on the ability to understand the diagram.
- Often in graphs generated by basic tools -- e.g. spreadsheet programs -- the categories are automatically encoded using many different variation of a single visual attribute -- e.g. shape or color -- that require a lot of cognitive effort to be discerned. A little more design effort should be spent in finding alternative representations that make understanding more immediate.
-Another common result of using unaltered graphs produced by, e.g. spreadsheets, is the having rotated or slanted labels on the x axis, making more difficult than required reading the graph. Most of the time a simple solution is to swap x and y axes; this should be the immediate choice in presence of long labels.
-One other common mistake that is worth mentioning is the use of a legend instead of direct labelling the series of data in the plot area. This is probably due to the default in most tools as well as the difficulty in implementing direct labelling in those tools.
+The lack of values on the axes is another relatively common error that has a heavy impact on the ability to understand the diagram.
+Often in graphs that have been generated by basic tools -- e.g. spreadsheet programs --, the categories are automatically encoded using many different variation of a single visual attribute -- e.g. shape or color -- that require a lot of cognitive effort to be discerned. A little more design effort should be spent in finding alternative representations that make understanding more immediate.
+Another common result of using unaltered graphs produced by e.g. spreadsheets is having rotated or slanted labels on the x axis, making reading the graph more difficult than required. Most of the time a simple solution is to swap x and y axes; this should be the immediate choice in presence of long labels.
+Another common mistake that is worth mentioning is the use of a legend instead of direct labelling the series of data in the plot area. This is probably due to the default in most tools as well as the difficulty in implementing direct labelling in those tools.
 
 Most of the times errors could be solved with a small effort. We believe they are introduce because authors do not pay enough attention to the quality of the figures and, in the case of journals, neither the reviewers do. Some basic and easy to follow guidelines are presented in the Empirical Standards for Software Engineering Research [@EmpiricalStandards].
 
-We note that very few figures show evident mistakes such as using non-zero based bars, copping figures, adopting double scales or deforming the graph area, still almost 5% of figures are affected.
+We note that very few figures show evident mistakes such as using non-zero based bars, copping figures, adopting double scales or deforming the graph area; still almost 5% of figures are affected.
 
 ::: {.callout-note appearance="minimal" icon=false}
 
@@ -931,10 +931,10 @@ Common minor errors include a less than ideal use of legends.
 
 ## Limitations
 
-The study presented in this paper is exploratory and therefore presents several limitations, we highlight the main ones. 
+The study presented in this paper is exploratory and therefore presents several limitations; we highlight the main ones. 
 
 Only a few selected SE publication venues have been
-considered. Although the venues have a very good reputation, they do not represent the whole publication spectrum in SE. Moreover the articles a drawn from a limited time span, they represent a sample. This might affect the external validity of the study.
+considered. Although the venues have a very good reputation, they do not represent the whole publication spectrum in SE. Moreover the articles have been drawn from a limited time span, they represent a sample. This might affect the external validity of the study.
 The graph error taxonomy has been built based on the literature in the area of data visualization, but it could have omitted important errors or, vice-versa, considered error that are not such in the view of other researchers. In addition the severity level has been assigned to each error on the basis of the author expert judgment.
 In the classification of the type of quantitative diagrams we considered only the main type, although there are several cases of diagram that mix multiple types, e.g. bars + lines, that were not considered.
 
@@ -942,7 +942,7 @@ In the classification of the type of quantitative diagrams we considered only th
 # Conclusions
 
 In this work we collected articles from four leading SE publication venues, two conferences and two journals, and analyzed how figures are used.
-We found the average density if 0.42 figures per page and half of them are used to convey quantitative information.
+We found the average density is 0.42 figures per page and half of them are used to convey quantitative information.
 The most common quantitative graph types are bar plots, boxplots, and line plots. We also classified the errors committed in the quantitative graphs and we found that on average every figure has 1 or 2 errors.
 
 Most errors are relatively easy to address and we advocate for a wider diffusion of visual literacy in the SE research community.
