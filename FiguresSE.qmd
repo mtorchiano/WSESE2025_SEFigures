@@ -1,7 +1,4 @@
 ---
-#title: "Data Visualization in SE - an Exploration"
-#title: On the Use of Figures in SE Academic Papers
-#title: Exploring the Use of Figures in SE Academic Papers
 title: Exploring How SE Academic Papers Use Figures
 author:
   - name: Marco Torchiano
@@ -149,6 +146,7 @@ The detailed descriptions of the are reported below:
 
 ```{r}
 #| results: asis
+
 errors |> 
   arrange(Severity,Error) |>
   rowwise() |>
@@ -156,7 +154,6 @@ errors |>
   group_by(Severity) |> 
   summarize(desc=paste("### ",first(Severity),"\n\n", desc |> paste0(collapse="\n\n"))) %>%
   .$desc |> paste0(collapse="\n\n") |> cat()
-
 ```
 
 
@@ -173,13 +170,6 @@ gqm<-
          value = c("the usage of figures articles","understanding","the type, technique, and mistakes","paper authors and reviewers","SE conferences and journals" ))
 
 gqm |> kableExtra::kbl(booktabs = T, col.names = c("",""))
-
-# Analyze	the usage of figures articles
-# For the purpose of	understanding
-# With respect to	the type, technique, and mistakes
-# From the viewpoint of	paper authors and reviewers
-# In the context of	SE conferences and journals
-
 ```
 
 
@@ -280,7 +270,6 @@ After the processing of a whole venue a second round of discussion focused on th
 # Results
 
 ```{r load graph data}
-
 papers = read_csv("papers.csv", col_types = cols(
   VenueType = col_character(),
   Venue = col_character(),
@@ -355,7 +344,7 @@ The figure shows the distribution of density using a boxplot and reports the mea
 #| fig-cap: "Figure density (figures per page) of papers in different venues"
 #| fig.width: 6
 #| fig.height: 3
-# overall
+#| fig-pos: 'tb'
 
 dg.density <-
 dg |> filter(!Missing) |> 
@@ -403,7 +392,6 @@ dg.density|> arrange(Venue) |>
                   #col.names = c("Venue","Mean F","Mean P","Mean D","w/o Fig","%"))
                   col.names = c("Venue","Figures","Pages","Mean F/P","Median F/P","w/o Fig"),
                   align="lrrrr")
-
 ```
 
 By looking at the figure we can observe significant differences among the four venues. 
@@ -414,13 +402,10 @@ Considering as the reference level for the Venue variable the ESEM conference, b
 #| label: tbl-anova-density
 #| tbl-cap: "ANOVA results of Figure density vs. Venue"
 
-#wilcox.test(fig_per_page~VenueType, data=dg.density, conf.int=TRUE)
-
 lm(fig_per_page~Venue, data=dg.density) |> summary() |> 
   coefficients() |> as_tibble(rownames="Coefficient") |>
   pvalue_fmt("Pr(>|t|)") |>
   kableExtra::kbl(booktabs = T, digits=3)
-
 ```
 
 Since the length of articles we report in @fig-pages-density a scatter plot of figure density vs. number of pages.
@@ -430,6 +415,7 @@ Since the length of articles we report in @fig-pages-density a scatter plot of f
 #| fig-cap: "Figure density vs. pages in article for different venues."
 #| fig.width: 6
 #| fig.height: 4
+#| fig-pos: 'tb'
 
 dg.density |>
 ggplot(aes(x=pages,y=fig_per_page, color=VenueType, shape=Venue)) +
@@ -458,7 +444,7 @@ To understand if a change in time occurred we compared the two conferences over 
 #| fig.width: 6
 #| fig.height: 2
 #| warning: false
-# overall
+#| fig-pos: 'tb'
 
 dg.density |> filter(Year>=2019,VenueType=="Conference") |>
 ggplot(aes(x=fig_per_page,y=as_factor(Year))) +
@@ -480,16 +466,6 @@ yp.cor <- cor.test(~ fig_per_page + Year,
 From the figure we can observe a negligible (r=`r round(yp.cor$estimate,3)`) correlation of density with year of publication.
 
 
-```{r}
-#| warning: false
-
-# lm(fig_per_page ~ Year + Venue, 
-#          data=dg.density|> filter(VenueType=="Conference",Year>=2019)) |>
-#   summary()
-
-```
-
-
 ## RQ2 Content
 
 @fig-category-venue reports the proportion of quantitative (Q) vs. non quantitative (NonQ) figures in the article, divided by venue.
@@ -499,7 +475,6 @@ From the figure we can observe a negligible (r=`r round(yp.cor$estimate,3)`) cor
 #| fig-cap: "Category of figures"
 #| fig.width: 6
 #| fig.height: 2
-
 
 dg %>% filter( !Missing, !is.na(Type) ) %>% 
   group_by(Venue) %>% 
@@ -540,6 +515,7 @@ The proportion varies notably among the four venues considered, with ESEM confer
 #| fig-cap: "Distribution of quantitative figure proportions"
 #| fig.width: 6
 #| fig.height: 5
+#| fig-pos: 'tb'
 
 dg.q <-
 dg |> filter( !Missing, !is.na(Type) ) |> 
@@ -576,25 +552,6 @@ ggplot(aes(x=PropQ))+
 The detailed distribution of the proportion of quantitative figures per paper is reported in @fig-q-prop.
 We observe that in the case of ESEM the distribution is very extreme with 22% of articles that have no quantitative figure at all and 44% that contain only quantitative figures. For the other venues the proportion articles with only quantitative figures is much smaller with proportions ranging from 5% to 7%, while the proportion of articles with only non quantitative figures is close to 20%.
 
-
-```{r}
-# #| label: tbl-prop-q
-# #| tbl-cap: "Summary of Q vs. NonQ figures per paper"
-# 
-# dg |> filter( !Missing, !is.na(Type) ) |> 
-#   group_by(Venue,DOI) |> 
-#   count(quantitative) |>
-#   mutate(quantitative = factor(quantitative,levels=c(FALSE,TRUE),labels=c("NonQ","Q"))) |>
-#   complete(quantitative,fill=list(n=0)) |>
-#   pivot_wider(values_from = "n", names_from = "quantitative") |>
-#   group_by(Venue) |>
-#   summarize(PropQ = sum(Q)/sum(NonQ+Q), MeanPropQ = mean(Q/(NonQ+Q)), SDPropQ = sd(Q/(NonQ+Q)), PropNoQ = sum(Q==0)/n(), PropOnlyQ = sum(NonQ==0)/n(),.groups = "drop") |>
-#   arrange(-MeanPropQ) |>
-#   mutate(across(2:6,~(.x*100)|>round(1)|>paste0("%"))) |>
-#   kableExtra::kbl(booktabs = T)
-```
-
-
 Focusing on the non quantitative figures only, @fig-nonq reports the numbers as well as the proportion of the five different non quantitative types defined in our taxonomy.
 Two out of three non quantitative figures fall into the broad _Schema_ category that includes all the diagrams use to explain something, including also software architecture or UML diagrams. Around one in five _NonQ_ figures are used to depict code, this is common practice used instead of the _Listing_ environment. A smaller proportion (8.2%) is represented by screenshots. Eventually, we observed a few figures depicting graphs -- set of nodes and edges possibly labelled -- and just 59 figures reporting pictures or photographs.
 
@@ -603,6 +560,7 @@ Two out of three non quantitative figures fall into the broad _Schema_ category 
 #| fig-cap: "Type of non quantitative figures"
 #| fig.width: 6
 #| fig.height: 2.5
+#| fig-pos: 'tb'
 
 dg %>% filter( !Missing, !is.na(Type), quantitative=="NonQ" ) %>% 
   count( main_type ) %>% 
@@ -631,6 +589,8 @@ We report in @fig-quantitative the overall proportion of the different types of 
 #| fig-cap: "Type of quantitative figures"
 #| fig.width: 6
 #| fig.height: 6
+#| fig-pos: 'tb'
+
 dg %>% filter( !is.na(Type), quantitative=="Q" ) %>% 
   count( main_type ) %>% 
   mutate( prop = n / sum(n)) %>% 
@@ -662,9 +622,7 @@ A small minority of bar diagram are diverging diagrams.
 #| fig-cap: "Specific sub-types of bar graphs"
 #| fig.width: 6
 #| fig.height: 2
-
-# dg|>filter(main_type=="Bar")|>
-#   select(main_type,Type)|>distinct()
+#| fig-pos: 'tb'
 
 dg|>filter(main_type=="Bar")|>
   mutate(BarType = if_else(str_detect(Type,"[Gg]roup"),"Bar Grouped","Bar"),
@@ -685,8 +643,6 @@ ggplot(aes(x=n,y=BarType)) +
   scale_color_identity(guide="none") +
   ylab(NULL) + xlab("Number of figures") +
   theme_minimal()+theme(panel.grid.major.y = element_blank())
-
-
 ```
 
 
@@ -700,6 +656,8 @@ The violin plots in @fig-error-venue-distr describe the distribution of errors p
 #| fig-cap: "Number of errors per figure by venue"
 #| fig.width: 7
 #| fig.height: 3
+#| fig-pos: 'tb'
+
 dg %>% filter(!Missing,quantitative=="Q") %>% 
       mutate(n_errors = rowSums(across(all_of(errors$Error)))) %>% 
       select(-errors$Error) %>% 
@@ -728,76 +686,6 @@ dg %>% filter(!Missing,quantitative=="Q") |>
 
 We observe the average number of errors per figure is 1.6 (median 1). Overall half of the figures exhibit at least one error, with half the EMSE articles showing at least 2 errors. Concerning the proportion of figures where no error was detected, they are `r NoErrorSummary`.
 
-
-```{r}
-#| label: fig-severity-venue-distr
-#| fig-cap: "Distribution of errors per figure by venue and severity"
-#| fig.width: 6
-#| fig.height: 5
-
-# A more detailed picture can be gained by looking at the frequency of errors by severity level. @fig-severity-venue-distr shows the distribution of the number of errors detected per paper, per each combination of venue and severity level. 
-
-# dg |> filter(!Missing,quantitative=="Q") |>
-#       mutate(n_errors = rowSums(across(all_of(errors$Error)))) |>
-#       select(-errors$Error) |>
-# ggplot(aes(y=Venue,x=n_errors,fill=VenueType))+
-#   geom_violin(adjust=2)+
-#   geom_boxplot(color="gray40",fill="white",alpha=0.5,width=0.4)+
-#   geom_point(shape="+", size=4, color="gray50",
-#              data=~.x|>group_by(Venue)|>mutate(n_errors=mean(n_errors)))+
-#   scale_fill_brewer(type="qual",palette=1,guide = "none")+
-#   theme_minimal()+
-#   xlab("Number of mistakes")+
-#   theme(legend.position = "bottom",
-#         axis.title.y = element_text(vjust=1,angle = 0, margin = margin(r=-15)))
-# 
-# dg %>% filter(!Missing,quantitative=="Q") %>% 
-#   pivot_longer(cols=all_of(errors$Error),names_to = "Error",values_to = "Detected", ) |> 
-#   left_join(errors |> select(Error,Severity),by="Error") |>
-#   group_by(VenueType,Venue,DOI,Fig,Severity) %>% 
-#   summarize( n_errors = sum(Detected), .groups = "drop") |> 
-# ggplot(aes(y=Venue,x=n_errors,fill=VenueType))+
-#   #geom_violin(adjust=2)+
-#   #geom_boxplot(color="gray40",fill="white",alpha=0.5,width=0.4)+
-#   geom_boxplot()+
-#   geom_point(shape="+", size=4, color="gray50",
-#              data=~.x|>group_by(Venue)|>mutate(n_errors=mean(n_errors)))+
-#   scale_fill_brewer(type="qual",palette=1,guide = "none")+
-#   scale_x_continuous(breaks=0:4*2)+
-#   theme_light()+
-#   xlab("Number of errors")+
-#   facet_grid(Severity~.)+
-#   theme(legend.position = "bottom",
-#         axis.title.y = element_text(vjust=1,angle = 0, margin = margin(r=-15)))
-
-# dg %>% filter(!Missing,quantitative=="Q") |>
-#   pivot_longer(cols=all_of(errors$Error),names_to = "Error",values_to = "Detected", ) |>
-#   left_join(errors |> select(Error,Severity), by="Error") |>
-#   group_by(VenueType,Venue,DOI,Fig,Severity) |>
-#   summarize( n_errors = sum(Detected), .groups="drop") |>
-#   group_by(VenueType,Venue,Severity,n_errors) |>
-#   summarize( count=n()/3, .groups = "drop") |>
-#   group_by(VenueType,Venue,Severity) |> 
-#   mutate(prop = count/sum(count)) |>
-# ggplot(aes(x=n_errors, y=prop))+
-#   #geom_col(fill="#D95F02")+
-#   geom_col(aes(fill=VenueType))+
-#   scale_fill_brewer(type="qual",palette=1,guide = "none")+
-#   geom_text(aes(label=paste0(round(prop*100,1),"%"),
-#                 color=if_else(prop<0.05,"black","white"),
-#                 vjust=if_else(prop<0.05,-0.2,1.2)),
-#             size=1.3)+
-#   scale_color_identity()+
-#   scale_y_continuous(labels=scales::label_percent()) +
-#   #scale_fill_brewer(type="qual",palette=1,guide = "none")+
-#   theme_light()+
-#   xlab("Number of errors")+ylab(NULL)+
-#   scale_x_continuous(breaks=0:4*2)+
-#   facet_grid(Venue~Severity)+
-#   theme(panel.grid.major.x = element_blank(),panel.grid.minor.x = element_blank(),
-#         axis.title.y = element_text(vjust=1.05,angle = 0, margin = margin(r=-15)))
-# 
-```
 
 A more detailed picture can be gained by looking at the frequency of error free figures by severity level and venue reported in @tbl-severity-error-free. 
 
@@ -835,6 +723,7 @@ The errors types are reported divided by severity levels.
 #| fig-cap: "Overall frequency of error committed in quantitative figures"
 #| fig.width: 6
 #| fig.height: 8
+#| fig-pos: 'tb'
 
 num_qfigures <- nrow( dg %>% filter(!Missing,quantitative=="Q") )
 dg %>% filter(!Missing,quantitative=="Q") %>% 
