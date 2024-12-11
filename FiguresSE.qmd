@@ -1,6 +1,8 @@
 ---
 #title: "Data Visualization in SE - an Exploration"
-title: On the Use of Figures in SE Academic Papers
+#title: On the Use of Figures in SE Academic Papers
+#title: Exploring the Use of Figures in SE Academic Papers
+title: Exploring How SE Academic Papers Use Figures
 author:
   - name: Marco Torchiano
     affiliations:
@@ -797,7 +799,7 @@ We observe the average number of errors per figure is 1.6 (median 1). Overall ha
 # 
 ```
 
-A more detailed picture can be gained by looking at the frequency of error free figures by severity level and venue reported in  @tbl-severity-error-free. 
+A more detailed picture can be gained by looking at the frequency of error free figures by severity level and venue reported in @tbl-severity-error-free. 
 
 ```{r}
 #| label: tbl-severity-error-free
