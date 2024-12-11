@@ -19,10 +19,16 @@ jobs:
       with:
         r-version: '4.2.3'
 
-    - name: Install Quarto
-      run: |
-        wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.6.39/quarto-1.6.39-linux-amd64.deb
-        sudo dpkg -i quarto-1.6.39-linux-amd64.deb
+    - name: Set up Quarto
+      uses: quarto-dev/quarto-actions/setup@v2
+      with:
+        version: release
+        tinytex: true
+
+#    - name: Install Quarto
+#      run: |
+#        wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.6.39/quarto-1.6.39-linux-amd64.deb
+#        sudo dpkg -i quarto-1.6.39-linux-amd64.deb
 
     - name: Install R environment
       uses: r-lib/actions/setup-renv@v2
