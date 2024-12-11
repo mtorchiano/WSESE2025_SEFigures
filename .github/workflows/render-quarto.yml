@@ -1,4 +1,4 @@
-name: Render Presentations
+name: Render Paper
 
 on:
   push:
