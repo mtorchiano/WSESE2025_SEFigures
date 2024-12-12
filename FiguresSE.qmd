@@ -20,7 +20,6 @@ author:
     orcid: "0009-0001-3496-0072"
     email: lorenzo.laudadio@polito.it
 
-
 format:
   ieee-pdf: default
   ieee-html: default
@@ -40,7 +39,6 @@ citation:
   publisher: IEEE
   issued: 2024-05
 
-#include-in-header: _two-column-longtable.tex
 bibliography: biblio.bib
 abstract: |
   The usage of figures to represent data or concepts in scientific articles is a common practice. We aim to understand what figures are used for in SE articles and in particular how quantitative data is represented. For this purpose we analyzed 865 articles published in leading software engineering scientific conferences and journals and classified 6342 figures and their contents. 47% of the figures are used to convey quantitative information and the rest depict more abstract non-quantitative information. The most common types of quantitative diagrams are bar plots, box plots, and line plots, accounting for 75% of the quantitative figures. We also found that each figure contains 1.6 errors, although 75% of them do not contain any critical error. Critical blatant errors are found in less than 5% of the figures.
@@ -260,7 +258,6 @@ graph_types_tab <- graph_types |>
 ```
 
 ::: {.content-hidden unless-format="pdf"}
-
 Concerning the figures, in addition to the main distinction between quantitative (Q) and non-quantitative (NonQ), we categorized the type of content.
 The list of types of figure contents are reported in @tbl-types divided into quantitative and non quantitative.
 
