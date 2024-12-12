@@ -32,8 +32,15 @@ jobs:
       run: |
         quarto render
 
-    - name: Upload rendered presentation
+    - name: Upload rendered paper
       uses: actions/upload-artifact@v4
       with:
         name: paper
         path: "_manuscript/*.pdf"
+
+    - name: Render and Publish
+      uses: quarto-dev/quarto-actions/publish@v2
+      with:
+        target: gh-pages
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
