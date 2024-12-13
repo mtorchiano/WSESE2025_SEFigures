@@ -30,8 +30,8 @@ jobs:
 
     - name: Render Paper
       run: |
-        quarto render --to ieee-pdf
-        quarto render --to ieee-html --no-clean
+        quarto render --to ieee-html
+        quarto render --no-clean --to ieee-pdf
         echo "MANUSCRIPT CONTENTS"
         ls -l _manuscript/
 
