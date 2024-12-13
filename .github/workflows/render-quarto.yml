@@ -30,7 +30,8 @@ jobs:
 
     - name: Render Paper
       run: |
-        quarto render --no-clean
+        quarto render --to ieee-pdf
+        quarto render --to ieee-html --no-clean
 
     - name: Render and Publish
       uses: quarto-dev/quarto-actions/publish@v2
