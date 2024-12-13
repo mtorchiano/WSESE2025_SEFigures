@@ -39,6 +39,7 @@ citation:
   publisher: IEEE
   issued: 2024-05
 
+#cite-method: biblatex
 bibliography: biblio.bib
 abstract: |
   The usage of figures to represent data or concepts in scientific articles is a common practice. We aim to understand what figures are used for in SE articles and in particular how quantitative data is represented. For this purpose we analyzed 865 articles published in leading software engineering scientific conferences and journals and classified 6342 figures and their contents. 47% of the figures are used to convey quantitative information and the rest depict more abstract non-quantitative information. The most common types of quantitative diagrams are bar plots, box plots, and line plots, accounting for 75% of the quantitative figures. We also found that each figure contains 1.6 errors, although 75% of them do not contain any critical error. Critical blatant errors are found in less than 5% of the figures.
@@ -123,7 +124,7 @@ On the basis of the extensive literature and the personal experience in reviewin
 
 
 ```{r}
-errors <- read_csv("GraphErrors.csv", 
+errors <- read_csv("data/GraphErrors.csv", 
                     col_types = cols(
                       Severity = col_factor(levels=c("Critical","Major","Minor")),
                       Error = col_character(),
@@ -242,7 +243,7 @@ tibble(
 ```
 
 ```{r}
-graph_types <- read_csv("GraphTypes.csv", col_types = 
+graph_types <- read_csv("data/GraphTypes.csv", col_types = 
                           cols(
                             Type = col_character(),
                             Description = col_character(),
@@ -299,7 +300,7 @@ After the processing of a whole venue a second round of discussion focused on th
 # Results
 
 ```{r load graph data}
-papers = read_csv("papers.csv", col_types = cols(
+papers = read_csv("data/papers.csv", col_types = cols(
   VenueType = col_character(),
   Venue = col_character(),
   Year = col_integer(),
@@ -309,7 +310,7 @@ papers = read_csv("papers.csv", col_types = cols(
 
 non_quantitative = c("Schema", "Code", "Screenshot", "Picture", "Graph", "Table", "Wordcloud")
 
-dg <- read_csv("SEVizData.csv", show_col_types = FALSE) |>
+dg <- read_csv("data/SEVizData.csv", show_col_types = FALSE) |>
       mutate( main_type = Type |> str_extract("[^, +/()]+") |> str_to_title() ) %>% 
       mutate( main_type = str_replace(main_type,"Dots?","Dot")) %>% 
       mutate( main_type = str_replace(main_type,"Bars?|Diverging","Bar")) %>% 

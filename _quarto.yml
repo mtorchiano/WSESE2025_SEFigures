@@ -3,6 +3,17 @@ project:
 
 manuscript:
   article: FiguresSE.qmd
+  code-links: 
+    - repo
+    - text: "Figure data"
+      href: data/SEVizData.csv
+      icon: database
+  resources:
+    - data/SEVizData.csv
+    - data/papers.csv
+    - GraphErrors.csv
+    - GraphTypes.csv
+
 
 format:
   ieee-pdf: default
