@@ -32,6 +32,9 @@ jobs:
       run: |
         quarto render --to ieee-pdf
         quarto render --to ieee-html --no-clean
+        echo "MANUSCRIPT CONTENTS"
+        ls -l _manuscript/
+
 
     - name: Render and Publish
       uses: quarto-dev/quarto-actions/publish@v2
