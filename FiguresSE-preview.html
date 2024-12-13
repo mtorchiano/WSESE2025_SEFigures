@@ -407,7 +407,7 @@
 <div class="cell-container code-fold"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>errors <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"GraphErrors.csv"</span>, </span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>errors <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/GraphErrors.csv"</span>, </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Severity =</span> <span class="fu">col_factor</span>(<span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Critical"</span>,<span class="st">"Major"</span>,<span class="st">"Minor"</span>)),</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Error =</span> <span class="fu">col_character</span>(),</span>
@@ -678,7 +678,7 @@ Table&nbsp;3: Variables
 <div class="cell-container code-fold"><div class="cell-decorator"><pre>In [9]:</pre></div><div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>graph_types <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"GraphTypes.csv"</span>, <span class="at">col_types =</span> </span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>graph_types <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/GraphTypes.csv"</span>, <span class="at">col_types =</span> </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">cols</span>(</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">Type =</span> <span class="fu">col_character</span>(),</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">Description =</span> <span class="fu">col_character</span>(),</span>
@@ -744,7 +744,7 @@ Table&nbsp;4: Types of figures
 <div class="cell-container code-fold"><div class="cell-decorator"><pre>In [12]:</pre></div><div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>papers <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"papers.csv"</span>, <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>papers <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"data/papers.csv"</span>, <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">VenueType =</span> <span class="fu">col_character</span>(),</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Venue =</span> <span class="fu">col_character</span>(),</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Year =</span> <span class="fu">col_integer</span>(),</span>
@@ -754,7 +754,7 @@ Table&nbsp;4: Types of figures
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>non_quantitative <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Schema"</span>, <span class="st">"Code"</span>, <span class="st">"Screenshot"</span>, <span class="st">"Picture"</span>, <span class="st">"Graph"</span>, <span class="st">"Table"</span>, <span class="st">"Wordcloud"</span>)</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>dg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"SEVizData.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>dg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/SEVizData.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>( <span class="at">main_type =</span> Type <span class="sc">|&gt;</span> <span class="fu">str_extract</span>(<span class="st">"[^, +/()]+"</span>) <span class="sc">|&gt;</span> <span class="fu">str_to_title</span>() ) <span class="sc">%&gt;%</span> </span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>( <span class="at">main_type =</span> <span class="fu">str_replace</span>(main_type,<span class="st">"Dots?"</span>,<span class="st">"Dot"</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>( <span class="at">main_type =</span> <span class="fu">str_replace</span>(main_type,<span class="st">"Bars?|Diverging"</span>,<span class="st">"Bar"</span>)) <span class="sc">%&gt;%</span> </span>
