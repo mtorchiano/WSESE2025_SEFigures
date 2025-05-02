@@ -88,7 +88,7 @@ pvalue_fmt <- function(.d, column, digits=3){
 
 In software engineering (SE) research, the effective communication of ideas, methodologies, and results is paramount. Papers in this field often employ a variety of visual aids, including figures, tables, and code fragments, to complement the textual content and enhance clarity. While there exist a large research community that explores innovative visualization techniques, the majority of visualizations in SE papers remain relatively mundane, relying on basic, well-established methods. This reliance on standard visual aids reflects both the practical constraints and the entrenched practices within the field.
 
-Practitioners who regularly writes papers and supervises younger researchers, can often find themselves providing guidance on the effective use of visualizations. This necessity arises from observing a recurring issue: poorly designed diagrams that fail to effectively convey the intended information. Additionally, as reviewers, we frequently encounter diagrams that are not only visually unappealing but also ineffective in communicating complex ideas. These experiences underscore a broader concern within the community regarding the presentation quality of SE papers. A critical question emerges: is it worthwhile to invest substantial effort in designing more sophisticated and effective diagrams? This paper aims to address this question by examining the current state of visualization practices in SE research.
+Practitioners who regularly write papers and supervise younger researchers, can often find themselves providing guidance on the effective use of visualizations. This necessity arises from observing a recurring issue: poorly designed diagrams that fail to effectively convey the intended information. Additionally, as reviewers, we frequently encounter diagrams that are not only visually unappealing but also ineffective in communicating complex ideas. These experiences underscore a broader concern within the community regarding the presentation quality of SE papers. A critical question emerges: is it worthwhile to invest substantial effort in designing more sophisticated and effective diagrams? This paper aims to address this question by examining the current state of visualization practices in SE research.
 
 The goal of this paper is to advance the discourse on visualization in software engineering.
 The main contributions consist in:
@@ -196,10 +196,8 @@ In order to achieve the above goal we define the following research questions:
 
 - **RQ1**. Mode: how are figures used in SE articles?
 
-  To have an initial assessment of the phenomenon we consider important to
-  understand how many figures are used in SE papers.
-  Also it is interesting to observe if there is a trend in time concerning
-  the usage of figures.
+  To have an initial assessment of the phenomenon we consider important to understand how many figures are used in SE papers.
+  Also it is interesting to observe if there is a trend in time concerning the usage of figures.
 
 
 - **RQ2**. Content: what are figures used for?
@@ -211,8 +209,7 @@ In order to achieve the above goal we define the following research questions:
 
 - **RQ3**. Type: what types of diagrams are used to convey quantitative information?
 
-  Focusing on quantitative diagrams we investigate the type of diagrams used 
-  in the papers.
+  Focusing on quantitative diagrams we investigate the type of diagrams used in the papers.
 
 - **RQ4**. Mistakes: What are the errors committed in quantitative diagrams?
 
@@ -280,7 +277,6 @@ The list of types of figure contents are reported in @tbl-types_html divided int
 graph_types_tab |> kableExtra::kbl(booktabs = T, align="ll")
 ```
 :::
-
 
 The taxonomy of graph type was initially formed on the basis of the main graph types described in the literature, e.g. [@munzner2014, @Few2012].
 Then it was updated when, during the analysis of the articles, a diagram that was impossible to classify appeared.
@@ -363,8 +359,7 @@ dg |>
 The first RQ focuses on how much figures are used in SE papers to convey information.
 
 To address this question we looked at the number of figures that are used in the articles.
-Since the length of the articles can be quite diverse, we computed a derived measure that is 
-the density of figures, i.e. the number of figures per page.
+Since the length of the articles can be quite diverse, we computed a derived measure that is the density of figures, i.e. the number of figures per page.
 @fig-density reports the figure density for the four different venues, i.e. the conferences ESEM and ICSE as well as the journals TSE and ICSE.
 The figure shows the distribution of density using a boxplot and reports the mean value as a cross.
 

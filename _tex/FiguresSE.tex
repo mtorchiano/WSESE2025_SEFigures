@@ -94,9 +94,7 @@
   \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
 
-
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -121,6 +119,8 @@
 % Set default figure placement to htbp
 \def\fps@figure{htbp}
 \makeatother
+
+
 % definitions for citeproc citations
 \NewDocumentCommand\citeproctext{}{}
 \NewDocumentCommand\citeproc{mm}{%
@@ -154,6 +154,18 @@
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -355,7 +367,7 @@ remain relatively mundane, relying on basic, well-established methods.
 This reliance on standard visual aids reflects both the practical
 constraints and the entrenched practices within the field.
 
-Practitioners who regularly writes papers and supervises younger
+Practitioners who regularly write papers and supervise younger
 researchers, can often find themselves providing guidance on the
 effective use of visualizations. This necessity arises from observing a
 recurring issue: poorly designed diagrams that fail to effectively
@@ -1215,7 +1227,7 @@ density while EMSE has lower density. Concerning this latter difference,
 it can be explained by the larger number of pages of the articles
 published by EMSE.
 
-\begin{tcolorbox}[enhanced jigsaw, colback=white, bottomrule=.15mm, left=2mm, breakable, colframe=quarto-callout-note-color-frame, rightrule=.15mm, toprule=.15mm, opacityback=0, arc=.35mm, leftrule=.75mm]
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, left=2mm, colback=white, colframe=quarto-callout-note-color-frame, rightrule=.15mm, toprule=.15mm, opacityback=0, bottomrule=.15mm, leftrule=.75mm]
 
 \vspace{-3mm}\textbf{RQ1: how are figures used in SE articles?}\vspace{3mm}
 
@@ -1239,7 +1251,7 @@ such use of overview diagrams could explain the higher number of figures
 in ICSE papers, in fact the proportion of articles without quantitative
 figures is simila in ICSE and ESEM.
 
-\begin{tcolorbox}[enhanced jigsaw, colback=white, bottomrule=.15mm, left=2mm, breakable, colframe=quarto-callout-note-color-frame, rightrule=.15mm, toprule=.15mm, opacityback=0, arc=.35mm, leftrule=.75mm]
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, left=2mm, colback=white, colframe=quarto-callout-note-color-frame, rightrule=.15mm, toprule=.15mm, opacityback=0, bottomrule=.15mm, leftrule=.75mm]
 
 \vspace{-3mm}\textbf{RQ2: what are figures used for?}\vspace{3mm}
 
@@ -1264,7 +1276,7 @@ similar use are much less common (3.3\%). Other types of diagram that
 are known for perceptual issues, that is pies and bubbles, are rarely
 used: 2.5\% and 0.7\% respectively.
 
-\begin{tcolorbox}[enhanced jigsaw, colback=white, bottomrule=.15mm, left=2mm, breakable, colframe=quarto-callout-note-color-frame, rightrule=.15mm, toprule=.15mm, opacityback=0, arc=.35mm, leftrule=.75mm]
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, left=2mm, colback=white, colframe=quarto-callout-note-color-frame, rightrule=.15mm, toprule=.15mm, opacityback=0, bottomrule=.15mm, leftrule=.75mm]
 
 \vspace{-3mm}\textbf{RQ3: what type of quantitive diagrams are used?}\vspace{3mm}
 
@@ -1310,7 +1322,7 @@ We note that very few figures show evident mistakes such as using
 non-zero based bars, copping figures, adopting double scales or
 deforming the graph area; still almost 5\% of figures are affected.
 
-\begin{tcolorbox}[enhanced jigsaw, colback=white, bottomrule=.15mm, left=2mm, breakable, colframe=quarto-callout-note-color-frame, rightrule=.15mm, toprule=.15mm, opacityback=0, arc=.35mm, leftrule=.75mm]
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, left=2mm, colback=white, colframe=quarto-callout-note-color-frame, rightrule=.15mm, toprule=.15mm, opacityback=0, bottomrule=.15mm, leftrule=.75mm]
 
 \vspace{-3mm}\textbf{RQ4: what errors are found in quantitative figures?}\vspace{3mm}
 
