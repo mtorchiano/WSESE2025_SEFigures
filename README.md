@@ -17,10 +17,10 @@ To build the pdf version of the paper you need
 
 - [Quarto](https://quarto.org)
 - [R](https://cran.r-project.org) including the libraries:
-  `tidyverse`, `knitr`, `GGAlly`, `rmarkdown`
+  `tidyverse`, `knitr`, `GGally`, `rmarkdown`, `kableExtra`
   - The libraries can be installed from **R** using the commands
   ```
-  install.packages(c("tidyverse","knitr","GGAlly","rmarkdown"))
+  install.packages(c("tidyverse","knitr","GGally","rmarkdown","kableExtra"))
   ```
 
 
